@@ -1,0 +1,5 @@
+# Ignore executables with .exe extension (common on Windows)
+*.exe
+
+# ignore executable with .out extension (common on mac os)
+*.out
