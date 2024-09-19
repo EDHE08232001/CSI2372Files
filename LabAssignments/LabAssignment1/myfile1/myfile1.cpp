@@ -3,8 +3,10 @@
 
 using namespace std;
 
-int main() {
-    cout << "Exercise 1\n" << endl;
+int main()
+{
+    cout << "Exercise 1\n"
+         << endl;
 
     // char size
     cout << "size of a character in bytes: " << sizeof(char) << endl;
