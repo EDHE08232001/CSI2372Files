@@ -31,6 +31,8 @@ int main()
         choice = menu();
         switch (choice)
         {
+        // case 1
+        // Surface Calculation
         case '1':
             cout << endl
                  << "Surface calculation" << endl;
@@ -39,7 +41,9 @@ int main()
             cout << "The surface is: " << surface(radius) << endl;
             nsurface++;
             break;
-
+        
+        // case 2
+        // Volume calculation
         case '2':
             cout << endl
                  << "Volume calculation" << endl;
@@ -51,6 +55,8 @@ int main()
             nvolume++;
             break;
 
+        // case 3
+        // Exit
         case '3':
             cout << endl
                  << "Exit the program" << endl;
