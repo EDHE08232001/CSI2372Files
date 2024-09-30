@@ -1,7 +1,5 @@
 # Lab Assignments of CSI 2372
 
------
-
 ## Group Members
 1. Student 1
     * Name:
