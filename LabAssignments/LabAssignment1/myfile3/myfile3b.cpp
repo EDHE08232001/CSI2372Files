@@ -17,7 +17,7 @@ int searchIndex(vector<int> T, int imax) {
 	return res;
 }
 
-/* Exchange function that exchanges the values ​​of the arguments
+/* Exchange function that exchanges the values â€‹â€‹of the arguments
 **
 */
 void exchange(int& a, int& b) {
@@ -30,11 +30,24 @@ void exchange(int& a, int& b) {
 */
 
 void sort(vector<int>& T) {
-
-	//YOUR CODE
+    int number = T.size();
+    for (int m = 0; m < number - 1; m ++) {
+        // Finding the index of the minimum element in the unsorted portion of the array
+        int minimumIndexArray = m;  // Starting with the current index as minimumIndexArray
+        for (int s = m + 1; s < number; s ++) {
+            if (T[s] < T[minimumIndexArray]) {
+                minimumIndexArray = s;  // Updating minimumIndexArray if a smaller element is found
+            }
+        }
+        
+        // Swapping the found minimum element with the first unsorted element
+        if (minimumIndexArray != m) {  // Only swapping if minimumIndexArray has changed
+            exchange(T[m], T[minimumIndexArray]);
+        }
+    }
 }
 
-/* arrayEntry function to enter values ​​from your table
+/* arrayEntry function to enter values â€‹â€‹from your table
 **
 */
 vector<int> arrayEntry() {
@@ -42,7 +55,7 @@ vector<int> arrayEntry() {
 	cout << " Enter the size of your array: ";
 	cin >> size;
 	vector<int> res(size, 0);
-	cout << " Enter the values ​​of your array: \n";
+	cout << " Enter the values of your array:  \n";
 	for (int i = 0; i < size; i++) {
 		cout << " val[ " << i << "] =";
 		cin >> res[i];
@@ -71,4 +84,3 @@ int main() {
 	}
 	cout << "\n";
 }
-
