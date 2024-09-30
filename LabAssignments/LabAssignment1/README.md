@@ -6,6 +6,11 @@
         - Edward He
     * Student Number:
         - 300176553
+2. Student 2
+    * Name:
+        - Teodora Vukojevic
+    * Student Number:
+        - 300199584
 
 -----
 
