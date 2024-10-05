@@ -28,7 +28,8 @@ void sort(int a[], int size){
 		//while loop shifts larger elements to the right of the array to make space for the key
 		while (m >=0 && a[m] > arrKey){  //check if a[m] if greater than arrKey
 		//if a[m] > arrKey, means that the element at position m needs to move one position to the right to make room for arrKey
-		//this process continues (m = m - 1), moving to the left of the sorted portion of the array (a[0] to a[m]) untill we find the acceptable position for arrKey or reach the beginning of the array (m >= 0)
+		//this process continues (m = m - 1) moving to the left of the sorted portion of the array (a[0] to a[m]) 
+		//this happens until we find the acceptable position for arrKey or reach the beginning of the array (m >= 0)
 			a[m + 1] = a[m];
 			m = m - 1;
 		}
