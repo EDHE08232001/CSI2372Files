@@ -18,4 +18,4 @@
 
 This directory contains all the solution for assignment 2 exercises.
 
-*Note:* The starting file of ex4 is bugged. After functions are implemented, the program is always stuck in a infinite. So i debugged it with additional console prints.
+*Note:* The starting file of ex4 is bugged. After functions are implemented, the program is always stuck in an infinite loop. So i debugged it with additional console prints.

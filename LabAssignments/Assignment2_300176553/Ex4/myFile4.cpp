@@ -105,20 +105,21 @@ void replace(char *tab[], int const &nbre, int const &size)
 	cout << endl
 		 << "Enter the string number to modify: ";
 
-	// Read the line and parse the integer
-	string line;
-	getline(cin, line);
-	istringstream iss(line);
-	if (!(iss >> numero))
+	// Read the entire line of input and parse it into an integer
+	string line;			 // String to hold the input line
+	getline(cin, line);		 // Read the line from standard input
+	istringstream iss(line); // Create an input string stream from the line
+	if (!(iss >> numero))	 // Attempt to extract an integer from the stream
 	{
 		cout << "Invalid input." << endl;
-		return;
+		return; // Exit the function if extraction fails
 	}
 
+	// Check if the entered index is within the valid range
 	if (numero < 0 || numero >= nbre)
 	{
 		cout << "Invalid string number." << endl;
-		return;
+		return; // Exit the function if index is out of range
 	}
 
 	cout << "Enter the new string: ";
