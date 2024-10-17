@@ -13,6 +13,7 @@ public:
 	bool contains(int);
 	int nbElem();
 	int* tabElem();
+	
 private:
 	int* elem;
 	int size;
