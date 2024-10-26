@@ -1,4 +1,3 @@
-
 #include <iostream>
 using namespace std;
 
@@ -7,7 +6,8 @@ using namespace std;
 #include "CardsSet.h"
 #include "Player.h"
 
-int main() {
+int main()
+{
 	CardsSet packet;
 	Player you(packet, false);
 	Player me(packet, true);
@@ -25,19 +25,23 @@ int main() {
 			packet.shuffle();
 			packet.take();
 			int p1 = you.play();
-			if (p1 > 21) {
+			if (p1 > 21)
+			{
 				cout << "You lost! " << endl;
 			}
-			else if (p1 == 21) {
+			else if (p1 == 21)
+			{
 				cout << "You won! " << endl;
 			}
 			else // the computer must play
 			{
 				int p2 = me.play();
-				if (p2 <= 21 && p2 >= p1) {
+				if (p2 <= 21 && p2 >= p1)
+				{
 					cout << "You lost! " << endl;
 				}
-				else {
+				else
+				{
 					cout << "You won! " << endl;
 				}
 			}
@@ -45,5 +49,3 @@ int main() {
 	}
 	return 0;
 }
-
-
