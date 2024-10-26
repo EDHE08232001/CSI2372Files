@@ -1,3 +1,6 @@
+#ifndef PLAYER_H
+#define PLAYER_H
+
 class Player
 {
 public:
@@ -10,3 +13,5 @@ private:
     const bool computer;
     int countPoints();
 };
+
+#endif // PLAYER_H

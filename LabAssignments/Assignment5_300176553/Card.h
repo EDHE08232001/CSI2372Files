@@ -1,3 +1,6 @@
+#ifndef CARD_H
+#define CARD_H
+
 #include <iostream>
 using namespace std;
 #include <cassert> //for assert()
@@ -74,3 +77,5 @@ void Card::write()
 
     cout << colorName << " " << valueStr << endl;
 }
+
+#endif // CARD_H
