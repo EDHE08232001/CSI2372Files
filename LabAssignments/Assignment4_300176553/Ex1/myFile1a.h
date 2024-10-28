@@ -7,10 +7,13 @@ class Course {
     int num;
     int hours;
 public:
-    Course(int, int); 	//constructor
-    int getNum();
-    int getHours();
+    Course(int courseCode, int hrs) : num(courseCode), hours(hrs) {}
+    
+    int getNum() const {
+    	return num;
+	}
+	
+    int getHours() const {
+    	return hours;
+	}
 };
-
-
-
