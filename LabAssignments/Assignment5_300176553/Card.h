@@ -72,7 +72,7 @@ void Card::write()
     }
     else
     {
-        valueStr = to_string(val);
+        valueStr = to_string(val);   // this caused problems for my player.h
     }
 
     cout << colorName << " " << valueStr << endl;
