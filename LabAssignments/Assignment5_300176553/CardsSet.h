@@ -22,7 +22,7 @@ private:
     int number;
 };
 
-void CardsSet::novSet()
+void CardsSet::novSet()  // this is the another thing causing me issues
 {
     number = 0;
     for (int col = club; col <= spade; col++)
