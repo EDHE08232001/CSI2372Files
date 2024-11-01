@@ -4,7 +4,6 @@
 #include "CardsSet.h"
 #include <iostream>
 
-
 class Player {
 public:
     Player(CardsSet& cardPacket, bool isComputer) : packet(cardPacket), computer(isComputer) {}
@@ -48,6 +47,7 @@ int Player::play(){
 }
 
 int Player::countPoints(){
+	
 	int totalPoints = 0;
 	int aceCounter = 0;
 	
