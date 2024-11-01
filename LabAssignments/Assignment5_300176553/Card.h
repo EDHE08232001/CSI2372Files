@@ -2,9 +2,11 @@
 #define CARD_H
 
 #include <iostream>
+#include <sstream> // Added for std::ostringstream
+#include <cassert> // For assert()
 using namespace std;
-#include <cassert> //for assert()
 
+// Enum to represent card colors
 enum color
 {
     club,
@@ -25,40 +27,24 @@ private:
     int val;
 };
 
-/*Constructor*/
+/* Constructor */
 Card::Card(color c, int v)
 {
-    assert(v >= 1 && v <= 13); // we use a standard function void assert (int expression)
-    // which indicates an error message if the expression is false.
+    assert(v >= 1 && v <= 13); // Ensure the card value is between 1 and 13
     col = c;
     val = v;
 }
 
+/* write() method */
 void Card::write()
 {
-    // Display card color
-    string colorName;
-    switch (col)
-    {
-    case club:
-        colorName = "Club";
-        break;
-    case diamond:
-        colorName = "Diamond";
-        break;
-    case heart:
-        colorName = "Heart";
-        break;
-    case spade:
-        colorName = "Spade";
-        break;
-    default:
-        break;
-    }
-
     // Display card value
     string valueStr;
-    if (val == 11)
+    if (val == 1)
+    {
+        valueStr = "Ace";
+    }
+    else if (val == 11)
     {
         valueStr = "Jack";
     }
@@ -72,10 +58,34 @@ void Card::write()
     }
     else
     {
-        valueStr = to_string(val);   // this caused problems for my player.h
+        // Convert integer value to string using stringstream
+        std::ostringstream oss;
+        oss << val;
+        valueStr = oss.str();
     }
 
-    cout << colorName << " " << valueStr << endl;
+    // Display card color
+    string colorName;
+    switch (col)
+    {
+    case club:
+        colorName = "Clubs";
+        break;
+    case diamond:
+        colorName = "Diamonds";
+        break;
+    case heart:
+        colorName = "Hearts";
+        break;
+    case spade:
+        colorName = "Spades";
+        break;
+    default:
+        break;
+    }
+
+    // Output the card information
+    cout << valueStr << " of " << colorName << endl;
 }
 
 #endif // CARD_H
