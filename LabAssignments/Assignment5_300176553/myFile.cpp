@@ -1,7 +1,6 @@
 #include <iostream>
 using namespace std;
 
-#include "myFile.h"
 #include "Card.h"
 #include "CardsSet.h"
 #include "Player.h"
@@ -9,40 +8,44 @@ using namespace std;
 int main()
 {
 	CardsSet packet;
-	Player you(packet, false);
-	Player me(packet, true);
+	Player you(packet, false); // Initialize player (user)
+	Player me(packet, true);   // Initialize player (computer)
 	char answer[3];
 	bool continuous = true;
-	cout << "Hello! " << endl;
+
+	cout << "Hello!" << endl;
 	while (continuous)
 	{
-		cout << "A new game? " << endl;
+		cout << "A new game? (y/n) ";
 		cin >> answer;
-		continuous = answer[0] == 'y';
+		continuous = answer[0] == 'y' || answer[0] == 'Y';
 		if (continuous)
 		{
+			// Initialize and shuffle the packet of cards
 			packet.novSet();
 			packet.shuffle();
-			packet.take();
-			int p1 = you.play();
+
+			int p1 = you.play(); // User plays
+
 			if (p1 > 21)
 			{
-				cout << "You lost! " << endl;
+				cout << "You lost!" << endl;
 			}
 			else if (p1 == 21)
 			{
-				cout << "You won! " << endl;
+				cout << "You won!" << endl;
 			}
-			else // the computer must play
+			else // Computer's turn
 			{
-				int p2 = me.play();
+				int p2 = me.play(); // Computer plays
+
 				if (p2 <= 21 && p2 >= p1)
 				{
-					cout << "You lost! " << endl;
+					cout << "You lost!" << endl;
 				}
 				else
 				{
-					cout << "You won! " << endl;
+					cout << "You won!" << endl;
 				}
 			}
 		}

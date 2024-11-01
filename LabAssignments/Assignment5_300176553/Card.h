@@ -2,11 +2,11 @@
 #define CARD_H
 
 #include <iostream>
-#include <sstream> // Added for std::ostringstream
-#include <cassert> // For assert()
+#include <string> // Include string header for std::string
 using namespace std;
+#include <cassert> // for assert()
 
-// Enum to represent card colors
+// Enum for card colors/suits
 enum color
 {
     club,
@@ -35,36 +35,10 @@ Card::Card(color c, int v)
     val = v;
 }
 
-/* write() method */
+/* write() method to display card information */
 void Card::write()
 {
-    // Display card value
-    string valueStr;
-    if (val == 1)
-    {
-        valueStr = "Ace";
-    }
-    else if (val == 11)
-    {
-        valueStr = "Jack";
-    }
-    else if (val == 12)
-    {
-        valueStr = "Queen";
-    }
-    else if (val == 13)
-    {
-        valueStr = "King";
-    }
-    else
-    {
-        // Convert integer value to string using stringstream
-        std::ostringstream oss;
-        oss << val;
-        valueStr = oss.str();
-    }
-
-    // Display card color
+    // Display card color/suit
     string colorName;
     switch (col)
     {
@@ -80,11 +54,13 @@ void Card::write()
     case spade:
         colorName = "Spades";
         break;
-    default:
-        break;
     }
 
-    // Output the card information
+    // Display card value
+    string valueNames[] = {"", "Ace", "2", "3", "4", "5", "6", "7",
+                           "8", "9", "10", "Jack", "Queen", "King"};
+    string valueStr = valueNames[val];
+
     cout << valueStr << " of " << colorName << endl;
 }
 
