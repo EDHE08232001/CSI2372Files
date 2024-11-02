@@ -16,32 +16,89 @@ enum class BeanType
     Garden
 };
 
+// Abstract base class Card
 class Card
 {
 public:
-    // Constructor
-    Card(BeanType type);
-
-    // Virtual destructor to allow derived class cleanup
     virtual ~Card() = default;
 
-    // Returns the number of cards needed to earn a certain number of coins
-    virtual int getCardsPerCoin(int coins) const;
+    // Pure virtual functions
+    virtual int getCardsPerCoin(int coins) const = 0;
+    virtual std::string getName() const = 0;
+    virtual void print(std::ostream &out) const = 0;
 
-    // Returns the name of the bean type
-    std::string getName() const;
+    // Friend global insertion operator using the virtual friend function idiom
+    friend std::ostream &operator<<(std::ostream &out, const Card &card)
+    {
+        card.print(out);
+        return out;
+    }
+};
 
-    // Prints the first character of the bean type to the output stream
-    virtual void print(std::ostream &out) const;
+// Derived classes
 
-    // Overloading the stream insertion operator
-    friend std::ostream &operator<<(std::ostream &out, const Card &card);
+class Blue : public Card
+{
+public:
+    int getCardsPerCoin(int coins) const override;
+    std::string getName() const override;
+    void print(std::ostream &out) const override;
+};
 
-    // Returns the bean type of the card
-    BeanType getBeanType() const;
+class Chili : public Card
+{
+public:
+    int getCardsPerCoin(int coins) const override;
+    std::string getName() const override;
+    void print(std::ostream &out) const override;
+};
 
-private:
-    BeanType type;
+class Stink : public Card
+{
+public:
+    int getCardsPerCoin(int coins) const override;
+    std::string getName() const override;
+    void print(std::ostream &out) const override;
+};
+
+class Green : public Card
+{
+public:
+    int getCardsPerCoin(int coins) const override;
+    std::string getName() const override;
+    void print(std::ostream &out) const override;
+};
+
+class Soy : public Card
+{
+public:
+    int getCardsPerCoin(int coins) const override;
+    std::string getName() const override;
+    void print(std::ostream &out) const override;
+};
+
+class Black : public Card
+{
+public:
+    int getCardsPerCoin(int coins) const override;
+    std::string getName() const override;
+    void print(std::ostream &out) const override;
+};
+
+class Red : public Card
+{
+public:
+    int getCardsPerCoin(int coins) const override;
+    std::string getName() const override;
+    void print(std::ostream &out) const override;
+};
+
+class Garden : public Card
+{
+public:
+    int getCardsPerCoin(int coins) const override;
+    std::string getName() const override;
+    void print(std::ostream &out) const override;
 };
 
 #endif // CARD_H
