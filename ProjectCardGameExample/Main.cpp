@@ -9,10 +9,10 @@ using namespace std;
 int main(){
     std::cout << "-------------------------------------------"<< std::endl;
     std::cout << "(FALL2021) - CSI2772 -  Project (Card Game)" << std::endl;
-    std::cout << " > Student name : Benjamin Kataliko "<< std::endl;
-    std::cout << " > Student number: 8842942 "<< std::endl;
-    std::cout << " > Student name : Mamadou Diallo "<< std::endl;
-    std::cout << " > Student number: 8883933 "<< std::endl;
+    std::cout << " > Student name : Student 1 "<< std::endl;
+    std::cout << " > Student number: #1 "<< std::endl;
+    std::cout << " > Student name : Student 2 "<< std::endl;
+    std::cout << " > Student number: #2 "<< std::endl;
     std::cout << "-------------------------------------------" << std::endl ;
     std::cout << std::endl;
 
