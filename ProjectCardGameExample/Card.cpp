@@ -5,25 +5,27 @@ using namespace std;
 
 /**
  * @brief Destroy the Card:: Card object
- * 
+ *
  */
 Card::~Card() {}
 
 /**
  * @brief Construct a new Blue:: Blue object
- * 
- * @param name 
+ *
+ * @param name
  */
-Blue::Blue(std::string name){
+Blue::Blue(std::string name)
+{
     this->name = name;
 }
 /**
  * @brief retourne le nombre de cartes qui correspond au nombre de piece
- * 
- * @param coins 
- * @return int 
+ *
+ * @param coins
+ * @return int
  */
-int Blue::getCardsPerCoin(int coins){
+int Blue::getCardsPerCoin(int coins)
+{
     int numCards = -1; // default to -1 : invalid
     switch (coins)
     {
@@ -44,53 +46,57 @@ int Blue::getCardsPerCoin(int coins){
         break;
     }
 
-    return  numCards;
+    return numCards;
 }
 
 /**
  * @brief retourne le nom de la carte
- * 
- * @return string 
+ *
+ * @return string
  */
-string Blue::getName(){
+string Blue::getName()
+{
     return this->name;
 }
 
 /**
  * @brief display the first letter of the card name
- * 
- * @param out 
+ *
+ * @param out
  */
-void Blue::print(std::ostream& out){
+void Blue::print(std::ostream &out)
+{
     out << this->getName()[0];
 }
 
 /**
  * @brief Construct a new Chili:: Chili object
- * 
- * @param name 
+ *
+ * @param name
  */
-Chili::Chili(std::string name){
+Chili::Chili(std::string name)
+{
     this->name = name;
 }
 
-
 /**
  * @brief retourne le nom de la carte
- * 
- * @return string 
+ *
+ * @return string
  */
-string Chili::getName(){
+string Chili::getName()
+{
     return this->name;
 }
 
 /**
  * @brief retourne le nombre de cartes qui correspond au nombre de piece
- * 
- * @param coins 
- * @return int 
+ *
+ * @param coins
+ * @return int
  */
-int Chili::getCardsPerCoin(int coins){
+int Chili::getCardsPerCoin(int coins)
+{
     int numCards = -1; // default to -1 : invalid
     switch (coins)
     {
@@ -111,45 +117,47 @@ int Chili::getCardsPerCoin(int coins){
         break;
     }
 
-    return  numCards;
+    return numCards;
 }
 
 /**
  * @brief display the first letter of the card name
- * 
- * @param out 
+ *
+ * @param out
  */
-void Chili::print(std::ostream& out){
+void Chili::print(std::ostream &out)
+{
     out << this->getName()[0];
 }
 
 /**
  * @brief Construct a new Stink:: Stink object
- * 
- * @param name 
+ *
+ * @param name
  */
-Stink::Stink(std::string name){
+Stink::Stink(std::string name)
+{
     this->name = name;
 }
 
-
 /**
  * @brief retourne le nom de la carte
- * 
- * @return string 
+ *
+ * @return string
  */
-string Stink::getName(){
+string Stink::getName()
+{
     return this->name;
 }
 
-
 /**
  * @brief retourne le nombre de cartes qui correspond au nombre de piece
- * 
- * @param coins 
- * @return int 
+ *
+ * @param coins
+ * @return int
  */
-int Stink::getCardsPerCoin(int coins){
+int Stink::getCardsPerCoin(int coins)
+{
     int numCards = -1; // default to -1 : invalid
     switch (coins)
     {
@@ -170,46 +178,48 @@ int Stink::getCardsPerCoin(int coins){
         break;
     }
 
-    return  numCards;
+    return numCards;
 }
-
 
 /**
  * @brief display the first letter of the card name
- * 
- * @param out 
+ *
+ * @param out
  */
-void Stink::print(std::ostream& out){
+void Stink::print(std::ostream &out)
+{
     out << this->getName()[0];
 }
 
 // Green
 /**
  * @brief Construct a new Green:: Green object
- * 
- * @param name 
+ *
+ * @param name
  */
-Green::Green(std::string name){
+Green::Green(std::string name)
+{
     this->name = name;
 }
 
-
 /**
  * @brief retourne le nom de la carte
- * 
- * @return string 
+ *
+ * @return string
  */
-string Green::getName(){
+string Green::getName()
+{
     return this->name;
 }
 
 /**
  * @brief retourne le nombre de cartes qui correspond au nombre de piece
- * 
- * @param coins 
- * @return int 
+ *
+ * @param coins
+ * @return int
  */
-int Green::getCardsPerCoin(int coins){
+int Green::getCardsPerCoin(int coins)
+{
     int numCards = -1; // default to -1 : invalid
     switch (coins)
     {
@@ -230,45 +240,48 @@ int Green::getCardsPerCoin(int coins){
         break;
     }
 
-    return  numCards;
+    return numCards;
 }
 
 /**
  * @brief display the first letter of the card name
- * 
- * @param out 
+ *
+ * @param out
  */
-void Green::print(std::ostream& out){
+void Green::print(std::ostream &out)
+{
     out << this->getName()[0];
 }
 
 // soy
 /**
  * @brief Construct a new soy::soy object
- * 
- * @param name 
+ *
+ * @param name
  */
-soy::soy(std::string name){
+soy::soy(std::string name)
+{
     this->name = name;
 }
 
-
 /**
  * @brief retourne le nom de la carte
- * 
- * @return string 
+ *
+ * @return string
  */
-string soy::getName(){
+string soy::getName()
+{
     return this->name;
 }
 
 /**
  * @brief retourne le nombre de cartes qui correspond au nombre de piece
- * 
- * @param coins 
- * @return int 
+ *
+ * @param coins
+ * @return int
  */
-int soy::getCardsPerCoin(int coins){
+int soy::getCardsPerCoin(int coins)
+{
     int numCards = -1; // default to -1 : invalid
     switch (coins)
     {
@@ -289,46 +302,49 @@ int soy::getCardsPerCoin(int coins){
         break;
     }
 
-    return  numCards;
+    return numCards;
 }
 
 /**
  * @brief display the first letter of the card name
- * 
- * @param out 
+ *
+ * @param out
  */
-void soy::print(std::ostream& out){
+void soy::print(std::ostream &out)
+{
     out << this->getName()[0];
 }
 
 // black
 /**
  * @brief Construct a new black::black object
- * 
- * @param name 
+ *
+ * @param name
  */
-black::black(std::string name){
+black::black(std::string name)
+{
     this->name = name;
 }
 
-
 /**
  * @brief retourne le nom de la carte
- * 
- * @return string 
+ *
+ * @return string
  */
-string black::getName(){
+string black::getName()
+{
     return this->name;
 }
 
 /**
  * @brief retourne le nombre de cartes qui correspond au nombre de piece
- * 
- * @param coins 
- * @return int 
+ *
+ * @param coins
+ * @return int
  */
-int black::getCardsPerCoin(int coins){
-    int numCards = -1; // default to -1 : invalid 
+int black::getCardsPerCoin(int coins)
+{
+    int numCards = -1; // default to -1 : invalid
     switch (coins)
     {
     case 1:
@@ -348,45 +364,48 @@ int black::getCardsPerCoin(int coins){
         break;
     }
 
-    return  numCards;
+    return numCards;
 }
 
 /**
  * @brief display the first letter of the card name
- * 
- * @param out 
+ *
+ * @param out
  */
-void black::print(std::ostream& out){
+void black::print(std::ostream &out)
+{
     out << this->getName()[0];
 }
 
 // Red
 /**
  * @brief Construct a new Red:: Red object
- * 
- * @param name 
+ *
+ * @param name
  */
-Red::Red(std::string name){
+Red::Red(std::string name)
+{
     this->name = name;
 }
 
-
 /**
  * @brief retourne le nom de la carte
- * 
- * @return string 
+ *
+ * @return string
  */
-string Red::getName(){
+string Red::getName()
+{
     return this->name;
 }
 
 /**
  * @brief retourne le nombre de cartes qui correspond au nombre de piece
- * 
- * @param coins 
- * @return int 
+ *
+ * @param coins
+ * @return int
  */
-int Red::getCardsPerCoin(int coins){
+int Red::getCardsPerCoin(int coins)
+{
     int numCards = -1; // default to -1 : invalid
     switch (coins)
     {
@@ -407,46 +426,47 @@ int Red::getCardsPerCoin(int coins){
         break;
     }
 
-    return  numCards;
+    return numCards;
 }
-
 
 /**
  * @brief display the first letter of the card name
- * 
- * @param out 
+ *
+ * @param out
  */
-void Red::print(std::ostream& out){
+void Red::print(std::ostream &out)
+{
     out << this->getName()[0];
 }
 
 /**
  * @brief Construct a new garden::garden object
- * 
- * @param name 
+ *
+ * @param name
  */
-garden::garden(std::string name){
+garden::garden(std::string name)
+{
     this->name = name;
 }
 
-
-
 /**
  * @brief retourne le nom de la carte
- * 
- * @return string 
+ *
+ * @return string
  */
-string garden::getName(){
+string garden::getName()
+{
     return this->name;
 }
 
 /**
  * @brief retourne le nombre de cartes qui correspond au nombre de piece
- * 
- * @param coins 
- * @return int 
+ *
+ * @param coins
+ * @return int
  */
-int garden::getCardsPerCoin(int coins){
+int garden::getCardsPerCoin(int coins)
+{
     int numCards = -1; // default to -1 : invalid
     switch (coins)
     {
@@ -467,37 +487,38 @@ int garden::getCardsPerCoin(int coins){
         break;
     }
 
-    return  numCards;
+    return numCards;
 }
 
 /**
  * @brief display the first letter of the card name
- * 
- * @param out 
+ *
+ * @param out
  */
-void garden::print(std::ostream& out){
-   out << this->getName()[0] ;
+void garden::print(std::ostream &out)
+{
+    out << this->getName()[0];
 }
 
 /**
  * @brief insertion operator to display the card object
- * 
- * @param out 
- * @param card 
- * @return std::ostream& 
+ *
+ * @param out
+ * @param card
+ * @return std::ostream&
  */
-std::ostream& operator<<(std::ostream& out, Card& card) 
-{ 
+std::ostream &operator<<(std::ostream &out, Card &card)
+{
     card.print(out);
-    return out; 
-} 
-
+    return out;
+}
 
 /**
  * @brief write the card inside a file
- * 
- * @param filename 
+ *
+ * @param filename
  */
-void Card::saveCard(std::ofstream& filename){
+void Card::saveCard(std::ofstream &filename)
+{
     filename << *this;
 }

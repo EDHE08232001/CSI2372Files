@@ -2,64 +2,68 @@
 
 /**
  * @brief  returns and removes the top card from the discard pile.
- * 
- * @return Card* 
+ *
+ * @return Card*
  */
-Card* DiscardPile::pickUp(){
-    Card* card;
-    card =  this->back();
+Card *DiscardPile::pickUp()
+{
+    Card *card;
+    card = this->back();
     this->pop_back();
     return card;
 }
 
 /**
  * @brief returns but does not remove the top card from the discard pile.
- * 
- * @return Card* 
+ *
+ * @return Card*
  */
-Card* DiscardPile::top(){
+Card *DiscardPile::top()
+{
     return this->back();
 }
 
-
 /**
  * @brief permet d'inserer toutes les cartes du DiscardPile dans le ostream
- * 
- * @param os 
+ *
+ * @param os
  */
-void  DiscardPile::print(std::ostream& os){
+void DiscardPile::print(std::ostream &os)
+{
 
-    for(int i = 0; i < this->size(); i++){
-        os << this->at(i)->getName()[0]<< " ";
+    for (int i = 0; i < this->size(); i++)
+    {
+        os << this->at(i)->getName()[0] << " ";
     };
-  
 }
-
 
 /**
  * @brief insertion operator to display the discard pile object (only the card on top of the discard pile)
- * 
- * @param output 
- * @param dp 
- * @return std::ostream& 
+ *
+ * @param output
+ * @param dp
+ * @return std::ostream&
  */
-std::ostream& operator<<( std::ostream &output, const DiscardPile& dp ){
+std::ostream &operator<<(std::ostream &output, const DiscardPile &dp)
+{
 
-    if(dp.size() > 0)
-       (dp.back())->print(output);
-    else 
-       output << "";
+    if (dp.size() > 0)
+        (dp.back())->print(output);
+    else
+        output << "";
 
     return output;
 }
 
 /**
  * @brief write the discard pile inside a file
- * 
- * @param filename 
+ *
+ * @param filename
  */
-void DiscardPile::saveDiscardPile(std::ofstream& filename){
-    for(int i = 0;  i < this->size() ; i++){
+void DiscardPile::saveDiscardPile(std::ofstream &filename)
+{
+    for (int i = 0; i < this->size(); i++)
+    {
         this->at(i)->saveCard(filename);
         filename << std::endl;
     }

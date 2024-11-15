@@ -1,4 +1,3 @@
-
 #include <algorithm>
 #include <random>
 
@@ -8,16 +7,16 @@
 #include "Card.h"
 #include "Deck.h"
 
-class CardFactory{
-    private:
-        Deck* deck;
-        CardFactory();
-    public:
-        static CardFactory* instance;
-        static CardFactory* getFactory();
-        Deck* getDeck();
+class CardFactory
+{
+private:
+    Deck *deck;
+    CardFactory();
 
-
+public:
+    static CardFactory *instance;
+    static CardFactory *getFactory();
+    Deck *getDeck();
 };
 
 #endif
