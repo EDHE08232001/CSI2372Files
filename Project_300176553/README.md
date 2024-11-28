@@ -18,3 +18,5 @@
 `clang++ -std=c++11 -Wall -Wextra ./*.cpp -o ./game`
    * `-std=c++11`: use c++11
    * `-Wall -Wextra`: enable warnings
+
+**Note:** Be sure to use c++ standard 11
