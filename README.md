@@ -2,7 +2,7 @@
 
 -----
 
-## Group Members
+# Group Members
 1. Student 1
     * Name:
         - Edward He
