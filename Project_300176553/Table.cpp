@@ -137,11 +137,11 @@ void Table::reloadPlayer(int p_id)
   }
   else
   {
-    std::cout << filename << " not found. Using default player." << std::endl;
+    std::cout << filename << " not found. Using default players." << std::endl;
     if (p_id == 1)
-      p1 = new Player("Player1");
+      p1 = new Player("Default Player1");
     else if (p_id == 2)
-      p2 = new Player("Player2");
+      p2 = new Player("Default Player2");
   }
 }
 
