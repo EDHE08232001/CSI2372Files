@@ -96,10 +96,10 @@ void Table::saveTable(){
  * @param p_id
  */
  
-void Table::reloadPlayer(int p_id){
-    std::ifstream file("Saved-P" + std::to_string(p_id) + ".txt");
+void Table::reloadPlayer(int player_id){
+    std::ifstream file("Saved-P" + std::to_string(player_id) + ".txt");
     if (file.is_open()) {
-        if (p_id == 1) {
+        if (player_id == 1) {
             p1 = new Player(file, cf);
         } 
 		
