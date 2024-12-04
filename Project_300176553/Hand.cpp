@@ -74,7 +74,8 @@ Card *Hand::getCard(int specifiedIndex){
         currentIndex++;
     }
 
-    pHand = temporary; // Restore original queue without modifying order
+    // Restore original queue without modifying order
+    pHand = temporary; 
     return targetCard;
 }
 
