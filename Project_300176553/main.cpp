@@ -1,172 +1,387 @@
-#include "headers/Main.h"
-#include <fstream>
+/**
+ * @file main.cpp
+ * @brief Main application file for the card game.
+ *
+ * This file contains the main function that initializes the game,
+ * manages the game loop, and handles user interactions.
+ */
+
+#include "./headers/main.h"
 #include <sstream>
-#include <iostream>
 
 using namespace std;
 
-int main(){
-    cout << "-------------------------------------------" << endl;
-    cout << "(FALL2024) - CSI2372 -  Project (Card Game)" << endl;
-    cout << " > Student name : Student 1 " << endl;
-    cout << " > Student number: #1 " << endl;
-    cout << " > Student name : Student 2 " << endl;
-    cout << " > Student number: #2 " << endl;
-    cout << "-------------------------------------------" << endl << endl;
+int main()
+{
+  // Display game and student information
+  std::cout << "-------------------------------------------" << std::endl;
+  std::cout << " > CSI2372 Fall 2024 Project (Card Game)" << std::endl;
+  std::cout << " > Student name : Edward He " << std::endl;
+  std::cout << " > Student number: 300176553 " << std::endl;
+  std::cout << " > Student name : Teodora Vukojevic " << std::endl;
+  std::cout << " > Student number: 300199584 " << std::endl;
+  std::cout << "-------------------------------------------" << std::endl;
+  std::cout << std::endl;
 
-    string player1Name, player2Name, winner_name;
+  // Variables for player names and winner
+  std::string p1_name;
+  std::string p2_name;
+  std::string winner_name;
 
-    const int MAX_NUM_PLAYER = 2;
-    Player *player1 = nullptr;
-    Player *player2 = nullptr;
-    DiscardPile *discardp = new DiscardPile;
-    CardFactory *cardf = CardFactory::getFactory();
-    Deck *deck = nullptr;
-    TradeArea *trAr = new TradeArea;
-    Table *tb = nullptr;
+  // Initialize game components
+  const int MAX_NUM_PLAYER = 2;
+  Player *p1 = nullptr;
+  Player *p2 = nullptr;
+  Player *pArr[MAX_NUM_PLAYER]; // Array of player pointers
+  DiscardPile *dp = new DiscardPile();
+  CardFactory *cf = CardFactory::getFactory();
+  Deck *deck = nullptr;
+  TradeArea *trAr = new TradeArea();
+  Table *tb = nullptr;
 
-    char user_input[2];
+  char user_input[2];
+  bool savedGame = false;
 
-    cout << "Do you want to reload a game?(y/n)" << endl;
-    cin >> user_input;
+  // Ask user if they want to reload a saved game
+  std::cout << " >> Do you want to reload a saved game? (y/n)" << std::endl;
+  std::cin >> user_input;
 
-    if (user_input[0] == 'y') {
-        tb = new Table(*player1, *player2, *discardp, *trAr, *deck, *cardf);
-        tb->reloadDeck();
-        deck = tb->getDeck();
-        tb->reloadPlayer(1);
-        tb->reloadPlayer(2);
-        player1 = tb->getPlayer(1);
-        player2 = tb->getPlayer(2);
-        tb->reloadDiscardPile();
-        discardp = tb->getDiscardPile();
-        tb->reloadTradeArea();
-        trAr = tb->getTradeArea();
-        
-    } 
-	
-	else {
-        cout << "Enter the name of the first player: ";
-        cin >> player1Name;
-        cout << "Enter the name of the second player: ";
-        cin >> player2Name;
+  if (user_input[0] == 'y')
+  {
+    // Reload game from saved files
+    savedGame = true;
+    tb = new Table(*p1, *p2, *dp, *trAr, *deck, *cf);
 
-        player1 = new Player(player1Name);
-        player2 = new Player(player2Name);
-        tb = new Table(*player1, *player2, *discardp, *trAr, *deck, *cardf);
+    // Reload deck
+    tb->reloadDeck();
+    deck = tb->getDeck();
 
-        deck = tb->getDeck();
+    // Reload players
+    tb->reloadPlayer(1);
+    tb->reloadPlayer(2);
 
-        cout << "Initializing each player with 5 cards." << endl;
-        
-        for (int playerID = 0; playerID < MAX_NUM_PLAYER; playerID++) {
-            for (int card = 0; card < 5; card++) {
-                (playerID == 0 ? player1 : player2)->takeCard(deck->draw());
-            }
-        }
+    p1 = tb->getPlayer(0);
+    p2 = tb->getPlayer(1);
+
+    // Reload discard pile
+    tb->reloadDiscardPile();
+    dp = tb->getDiscardPile();
+
+    // Reload trade area
+    tb->reloadTradeArea();
+    trAr = tb->getTradeArea();
+  }
+  else
+  {
+    // Start a new game
+    std::cout << std::endl;
+    std::cout << " >> Enter the name of the first player: ";
+    std::cin >> p1_name;
+    std::cout << std::endl;
+    std::cout << " >> Enter the name of the second player: ";
+    std::cin >> p2_name;
+    std::cout << std::endl;
+
+    // Create new players
+    p1 = new Player(p1_name);
+    p2 = new Player(p2_name);
+
+    pArr[0] = p1;
+    pArr[1] = p2;
+
+    // Initialize the table with the players and game components
+    deck = cf->getDeck();
+    tb = new Table(*p1, *p2, *dp, *trAr, *deck, *cf);
+
+    dp = tb->getDiscardPile();
+    trAr = tb->getTradeArea();
+
+    std::cout << " > Initializing each player with 5 cards." << std::endl;
+    std::cout << " > Current size of the deck: " << deck->size() << std::endl;
+
+    // Deal 5 cards to each player
+    for (int player = 0; player < MAX_NUM_PLAYER; player++)
+    {
+      for (int card = 0; card < 5; card++)
+      {
+        pArr[player]->takeCard(deck->draw());
+      }
     }
+  }
 
-    while (deck->size() != 0) {
-        cout << "Number of cards left in Deck: " << deck->size() << endl;
-        cout << "Do you want to pause and save the game? (y/n)" << endl;
-        cin >> user_input;
+  // Game loop
+  while (deck->size() != 0)
+  {
+    std::cout << " > -------------------------------------------" << std::endl;
+    std::cout << " > Types:\nB: Blue\nC: Chili\nS: Stink\nG: Green\ns: Soy\nb: "
+                 "black\nR: Red\ng: garden"
+              << std::endl;
 
-        if (user_input[0] == 'y') {
-            tb->saveTable();
-            cout << "Game saved. Bye." << endl;
-            break;
-        }
+    std::cout << "Number of cards left in Deck: " << deck->size() << std::endl;
+    std::cout << std::endl
+              << ">>>>>>>>>>> Do you want to pause and save the game? (y/n)"
+              << std::endl;
+    std::cin >> user_input;
+    if (user_input[0] == 'y')
+    {
+      // Save the game state
+      tb->saveTable();
+      std::cout << " > Game saved. Bye." << std::endl;
+      break;
+    }
+    else
+    {
+      // Proceed with the game
+      for (int i = 0; i < MAX_NUM_PLAYER; i++)
+      {
+        // Display table information
+        std::cout << std::endl
+                  << ">>>> Table information: <<<<" << std::endl
+                  << std::endl
+                  << *tb << std::endl;
 
-        for (int t = 0; t < MAX_NUM_PLAYER; t++) {
-            cout << "\n>>>> Player " << t + 1 << " turn. " << endl;
-            Player *p = tb->getPlayer(i);
+        // Player's turn
+        std::cout << std::endl;
+        std::cout << ">>>> Player " << i + 1 << " turn." << std::endl;
+        std::cout << std::endl;
 
-            cout << "> Drawing top card from deck..." << endl;
-            p->takeCard(deck->draw());
-            cout << "> Player " << t + 1 << " Hand: " << endl;
-            p->printHand(cout, true);
+        Player *p = tb->getPlayer(i); // Get the current player
 
-            if (trAr->numCards() > 0) {
-                for (Card *card : trAr->getListOfCards()) {
-                    bool cardAdded = false;
-                    for (Chain_Base *chain : *(p->getChains())) {
-                        if (card->getName() == chain->getChainType()) {
-                            *chain += trAr->trade(card->getName());
-                            cardAdded = true;
-                        }
-                    }
-                    if (!cardAdded) {
-                        cout << "> Card: ";
-                        card->print(cout);
-                        cout << " added to the discard pile." << endl;
-                        *deckp += trAr->trade(card->getName());
-                    }
-                }
+        std::cout << " > Drawing top card from deck..." << std::endl;
+        // Player draws top card from Deck
+        p->takeCard(deck->draw());
+
+        std::cout << std::endl
+                  << " > Player " << i + 1 << " Hand: " << std::endl;
+        p->printHand(std::cout, true);
+        std::cout << std::endl;
+
+        // Add bean cards from the TradeArea to chains or discard them
+        if (trAr->numCards() > 0)
+        {
+          bool cardAdded = false;
+          // Iterate over the cards in the trade area
+          for (Card *card : trAr->getListOfCards())
+          {
+            cardAdded = false;
+            // Check if the player has a chain that matches the card
+            for (Chain_Base *chain : *(p->getChains()))
+            {
+              if (card->getName() == chain->getChainType())
+              {
+                *chain += trAr->trade(card->getName());
+                cardAdded = true;
+                break;
+              }
             }
 
-            cout << "> Playing topmost card from Hand." << endl;
+            // Discard the card to the discard pile if it was not added
+            if (!cardAdded)
+            {
+              std::cout << " >> Card: ";
+              card->print(std::cout);
+              std::cout << " added to the discard pile." << std::endl;
+              *dp += trAr->trade(card->getName());
+            }
+          }
+        }
+
+        // Play topmost card from Hand
+        if (p->getHand()->numCards() > 0)
+        {
+          std::cout << std::endl
+                    << " > Playing topmost card from Hand ("
+                    << p->getHand()->top()->getName()[0] << ")" << std::endl;
+          p->playCard();
+
+          std::cout << std::endl
+                    << *p << std::endl;
+
+          std::cout << std::endl
+                    << " > Player " << i + 1 << " Hand: " << std::endl;
+          p->printHand(std::cout, true);
+          std::cout << std::endl;
+        }
+
+        std::cout
+            << std::endl
+            << " >> Play topmost card? (y) or Discard card to Discard Pile? (n)"
+            << std::endl;
+
+        std::cin >> user_input;
+
+        if (user_input[0] == 'y')
+        {
+          if (p->getHand()->numCards() > 0)
+          {
+            std::cout << " > Playing topmost card from Hand ("
+                      << p->getHand()->top()->getName()[0] << ")" << std::endl;
             p->playCard();
-            cout << "> Player " << t + 1 << " Hand: " << endl;
-            p->printHand(cout, true);
 
-            cout << "> Play topmost card? (y) or discard to Discard Pile? (n)" << endl;
-            cin >> user_input;
-            if (user_input[0] == 'y') {
-                cout << "> Playing topmost card from Hand." << endl;
-                p->playCard();
-            } else {
-                int idx;
-                Card *card = nullptr;
-                while (!card) {
-                    cout << "Enter the index of the card to remove: " << endl;
-                    cin >> idx;
-                    card = p->removeCard(idx);
-                    if (!card) {
-                        cout << "Invalid index. Please try again." << endl;
-                    }
-                }
-                cout << "> Card: ";
-                card->print(cout);
-                cout << " added to the discard pile." << endl;
-                *discardp += card;
-            }
+            std::cout << std::endl
+                      << *p << std::endl;
 
-            cout << "Drawing three cards from the deck to the trade area." << endl;
-            for (int drw = 0; drw < 3; drw++) {
-                *trAr += deck->draw();
-            }
-
-            cout << "> Trade Area: " << *trAr << endl;
-            while (discardp->size() > 0 && trAr->legal(discardp->top())) {
-                *trAr += discardp->pickUp();
-            }
-
-            for (Card *card : trAr->getListOfCards()) {
-                cout << "Do you want to chain the card [";
-                card->print(cout);
-                cout << "]? (y/n)" << endl;
-                cin >> user_input;
-                if (user_input[0] == 'y') {
-                    p->playCard(trAr->trade(card->getName()), true);
-                } else {
-                    cout << "Card left in the trade area." << endl;
-                }
-            }
-
-            for (int m = 0; m < 2; m++) {
-                if (deck->size() > 0)
-                    p->takeCard(deck->draw());
-            }
-            cout << "> Player " << m + 1 << " Hand: " << endl;
-            p->printHand(cout, true);
+            std::cout << std::endl
+                      << " > Player " << i + 1 << " Hand: " << std::endl;
+            p->printHand(std::cout, true);
+            std::cout << std::endl;
+          }
+          else
+          {
+            std::cout << " > No cards left in hand to play." << std::endl;
+          }
         }
+        else
+        {
+          int idx;
+          Card *card = nullptr;
+          // Show the player's full hand
+          std::cout << std::endl
+                    << " > Player " << i + 1 << " Hand: " << std::endl;
+          p->printHand(std::cout, true);
+
+          std::cout << " > Current size of the hand: " << p->getNumCards()
+                    << std::endl;
+          std::cout
+              << " >> Enter the index of the card you would like to remove: "
+              << std::endl;
+          std::cin >> idx;
+
+          // Remove the specified card from the hand
+          try
+          {
+            card = p->removeCard(idx);
+          }
+          catch (const std::out_of_range &e)
+          {
+            std::cout << "Invalid index. Please try again." << std::endl;
+            continue;
+          }
+
+          // Add the card to the discard pile
+          if (card != nullptr)
+          {
+            std::cout << " >> Card: ";
+            card->print(std::cout);
+            std::cout << " added to the discard pile." << std::endl;
+            *dp += card;
+          }
+        }
+
+        // Draw three cards from the deck and place them in the trade area
+        std::cout << std::endl
+                  << ">>>> Drawing three cards from the deck to the trade area."
+                  << std::endl
+                  << std::endl;
+        for (int drw = 0; drw < 3; drw++)
+        {
+          if (deck->size() > 0)
+            *trAr += (deck->draw());
+        }
+
+        std::cout << " > Trade Area: " << *trAr << std::endl;
+
+        // Move matching cards from the discard pile to the trade area
+        if (dp->size() > 0)
+        {
+          while (trAr->legal(dp->top()))
+          {
+            // Draw the top-most card from the discard pile and place it in the
+            // trade area
+            *trAr += (dp->pickUp());
+          }
+        }
+
+        std::cout << std::endl;
+
+        // Allow the player to add cards from the trade area to their chains
+        std::list<Card *> tradeCards = trAr->getListOfCards();
+        for (auto it = tradeCards.begin(); it != tradeCards.end();)
+        {
+          Card *card = *it;
+          std::cout << std::endl
+                    << " >> Do you want to chain the card [";
+          card->print(std::cout);
+          std::cout << "]? (y/n)" << std::endl;
+          std::cin >> user_input;
+
+          if (user_input[0] == 'y')
+          {
+            // Chain the card
+            p->playCard(trAr->trade(card->getName()), true);
+
+            std::cout << std::endl
+                      << *p << std::endl;
+
+            std::cout << std::endl
+                      << " > Player " << i + 1 << " Hand: " << std::endl;
+            p->printHand(std::cout, true);
+            std::cout << std::endl;
+
+            it = tradeCards.erase(it);
+          }
+          else
+          {
+            std::cout << std::endl
+                      << " > Card left in the trade area." << std::endl;
+            ++it;
+          }
+        }
+
+        // Draw two cards from the deck and add them to the player's hand
+        for (int j = 0; j < 2; j++)
+        {
+          if (deck->size() > 0)
+            p->takeCard(deck->draw());
+        }
+
+        std::cout << std::endl
+                  << "> Player " << i + 1 << " Hand: " << std::endl;
+        p->printHand(std::cout, true);
+        std::cout << std::endl;
+
+        std::cout << std::endl
+                  << "> Discard Pile all cards: ";
+        dp->print(std::cout);
+        std::cout << std::endl;
+      }
+    }
+  } // End of game loop
+
+  if (deck->size() == 0)
+  {
+    // Display final table information and determine the winner
+    std::cout << std::endl
+              << ">>>> Table information: <<<<" << std::endl
+              << std::endl
+              << *tb << std::endl;
+    std::cout << "> No cards left in deck. Deck size = " << deck->size()
+              << std::endl;
+    if (tb->win(winner_name))
+    {
+      std::cout << std::endl
+                << "> The winner is: " << winner_name << std::endl;
+    }
+    else
+    {
+      std::cout << std::endl
+                << "> The game is a draw." << std::endl;
     }
 
-    if (deck->size() == 0) {
-        cout << "> No cards left in deck. Deck size = " << deck->size() << endl;
-        tb->win(winner_name);
-        cout << "> The winner is: " << winner_name << endl;
-    }
+    std::cout << "Game Ends" << std::endl;
+  }
 
-    return 0;
-};
+  // Clean up dynamically allocated memory
+  delete dp;
+  delete trAr;
+  delete deck;
+  delete tb;
+
+  if (!savedGame)
+  {
+    delete p1;
+    delete p2;
+  }
+
+  return 0;
+}

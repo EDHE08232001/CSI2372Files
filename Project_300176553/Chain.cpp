@@ -5,10 +5,7 @@
  * @brief Returns the number of cards in the chain.
  * @return Number of cards in the chain.
  */
-int Chain_Base::getSize()
-{
-    return static_cast<int>(chain.size());
-}
+int Chain_Base::getSize() { return static_cast<int>(chain.size()); }
 
 /**
  * @brief Sets the type of the chain.
@@ -16,17 +13,14 @@ int Chain_Base::getSize()
  */
 void Chain_Base::setChainType(std::string chainType)
 {
-    this->chainType = chainType;
+  this->chainType = chainType;
 }
 
 /**
  * @brief Gets the type of the chain.
  * @return The chain type as a string.
  */
-std::string Chain_Base::getChainType()
-{
-    return chainType;
-}
+std::string Chain_Base::getChainType() { return chainType; }
 
 /**
  * @brief Saves the chain to a file.
@@ -34,12 +28,12 @@ std::string Chain_Base::getChainType()
  */
 void Chain_Base::saveChain(std::ofstream &filename)
 {
-    filename << chainType << std::endl;
-    for (size_t i = 0; i < chain.size(); i++)
-    {
-        chain.at(i)->saveCard(filename);
-    }
-    std::cout << "Chain saved." << std::endl;
+  filename << chainType << std::endl;
+  for (size_t i = 0; i < chain.size(); i++)
+  {
+    chain.at(i)->saveCard(filename);
+  }
+  std::cout << "Chain saved." << std::endl;
 }
 
 /**
@@ -50,11 +44,11 @@ void Chain_Base::saveChain(std::ofstream &filename)
  */
 std::ostream &operator<<(std::ostream &output, const Chain_Base &d)
 {
-    output << d.chainType << " ";
-    for (size_t i = 0; i < d.chain.size(); i++)
-    {
-        d.chain.at(i)->print(output);
-        output << " ";
-    }
-    return output;
+  output << d.chainType << " ";
+  for (size_t i = 0; i < d.chain.size(); i++)
+  {
+    d.chain.at(i)->print(output);
+    output << " ";
+  }
+  return output;
 }

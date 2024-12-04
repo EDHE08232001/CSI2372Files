@@ -24,39 +24,39 @@
 class CardFactory
 {
 private:
-    Deck *deck;    /**< Pointer to the Deck containing all the cards */
-    CardFactory(); /**< Private constructor for the singleton pattern */
+  Deck *deck;    /**< Pointer to the Deck containing all the cards */
+  CardFactory(); /**< Private constructor for the singleton pattern */
 
-    /**
-     * @brief Deleted copy constructor to prevent copying.
-     */
-    CardFactory(const CardFactory &) = delete;
+  /**
+   * @brief Deleted copy constructor to prevent copying.
+   */
+  CardFactory(const CardFactory &) = delete;
 
-    /**
-     * @brief Deleted assignment operator to prevent copying.
-     * @return Reference to the CardFactory.
-     */
-    CardFactory &operator=(const CardFactory &) = delete;
+  /**
+   * @brief Deleted assignment operator to prevent copying.
+   * @return Reference to the CardFactory.
+   */
+  CardFactory &operator=(const CardFactory &) = delete;
 
 public:
-    static CardFactory *instance; /**< Static pointer to the singleton instance */
+  static CardFactory *instance; /**< Static pointer to the singleton instance */
 
-    /**
-     * @brief Returns a pointer to the singleton CardFactory instance.
-     * @return Pointer to the CardFactory instance.
-     */
-    static CardFactory *getFactory();
+  /**
+   * @brief Returns a pointer to the singleton CardFactory instance.
+   * @return Pointer to the CardFactory instance.
+   */
+  static CardFactory *getFactory();
 
-    /**
-     * @brief Returns a shuffled Deck containing all the cards.
-     * @return Pointer to the Deck.
-     */
-    Deck *getDeck();
+  /**
+   * @brief Returns a shuffled Deck containing all the cards.
+   * @return Pointer to the Deck.
+   */
+  Deck *getDeck();
 
-    /**
-     * @brief Destructor for the CardFactory.
-     */
-    ~CardFactory();
+  /**
+   * @brief Destructor for the CardFactory.
+   */
+  ~CardFactory();
 };
 
 #endif // CARDFACTORY_H

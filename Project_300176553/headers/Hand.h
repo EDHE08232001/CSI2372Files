@@ -1,172 +1,136 @@
 #ifndef HAND_H
 #define HAND_H
 
-#include "Card.h"
+/**
+ * @file Hand.h
+ * @brief Contains the declaration of the Hand class used to represent a
+ * player's hand in the card game.
+ */
 
-#include <queue>
-#include <list>
-#include <sstream>
+#include "Card.h"
 #include <cstdlib>
-#include <memory>
+#include <list>
+#include <queue>
+#include <sstream>
 
 class CardFactory;
 
-class Hand{
-	
+/**
+ * @class Hand
+ * @brief Manages a player's hand of cards.
+ *
+ * The Hand class represents the cards a player holds. It provides
+ * functionalities to add cards, play the top card, access cards by position,
+ * and save/load the hand from a file. Internally, it uses a queue to manage the
+ * order of cards.
+ */
+class Hand
+{
 private:
-    std::queue<Card *, std::list<Card *>> pHand; // player hand
+  // The queue to store pointers to the card objects representing the player's
+  // hand
+  std::queue<Card *, std::list<Card *>> pHand;
+
+  /**
+   * @brief Clears all cards from the hand.
+   *
+   * This function empties the pHand queue, removing all cards.
+   */
+  void clearHand()
+  {
+    while (!pHand.empty())
+    {
+      delete pHand.front();
+      pHand.pop();
+    }
+  }
 
 public:
-    /**
-     * @brief Construct a new Hand object
-     */
-    Hand() = default;
+  /**
+   * @brief Default constructor for the Hand class.
+   */
+  Hand() {};
 
-    /**
-     * @brief Construct a new Hand object from an istream
-     *
-     * @param input
-     * @param cf
-     */
-    Hand(std::istream &input, const CardFactory *cf){
-        std::string strLine;
-        
-        while (std::getline(input, strLine)) {
-            Card *card = nullptr;
-            
-            if (strLine == "B"){
-				card = new Blue;
-			}
-			
-            else if (strLine == "C"){
-				card = new Chili;
-			}
-			
-            else if (strLine == "S"){
-				card = new Stink;
-			}
-			
-            else if (strLine == "G"){
-				card = new Green;
-			}
-			
-            else if (strLine == "s"){ 
-				card = new soy;
-			}
-			
-            else if (strLine == "b"){
-				card = new black;
-			}
-			
-            else if (strLine == "R"){
-				card = new Red;
-			}
-			
-            else if (strLine == "g"){
-				card = new garden;
-			}
-			
-            else {
-                std::cerr << "(Hand Constructor) Invalid card type: " << strLine << std::endl;
-                std::exit(1);
-            }
-            pHand.push(card);
-        }
-    }
+  /**
+   * @brief Constructs a Hand object from an input stream.
+   * Reconstructs the Hand from saved data.
+   * @param input The input stream to read from.
+   * @param cf Pointer to the CardFactory (currently unused).
+   *
+   * This constructor reads card data from the input stream, creates
+   * corresponding Card objects, and adds them to the hand.
+   */
+  Hand(std::istream &input, const CardFactory *cf);
 
-    /**
-     * @brief Add the card to the hand
-     *
-     * @param card
-     * @return Hand&
-     */
-    Hand &operator+=(Card *card){
-        pHand.push(card);
-        return *this;
-    }
+  /**
+   * @brief Destructor for the Hand class.
+   *
+   * Deletes all Card pointers stored in the hand to prevent memory leaks.
+   */
+  ~Hand();
 
-    /**
-     * @brief Returns and removes the Card at a given index
-     *
-     * @param pos
-     * @return Card*
-     */
-    Card *operator[](int pos){
-        if (pos < 0 || pos >= pHand.size()) {
-            std::cerr << "(operator[]) Invalid index: " << pos << std::endl;
-            return nullptr;
-        }
+  /**
+   * @brief Adds a card to the player's hand.
+   * @param card Pointer to the Card to add.
+   * @return Reference to the updated Hand object.
+   */
+  Hand &operator+=(Card *card);
 
-        std::queue<Card *, std::list<Card *>> temp;
-        Card *targetCard = nullptr;
-        int currentIndex = 0;
+  /**
+   * @brief Returns and removes the top card from the player's hand.
+   * @return Pointer to the Card played.
+   */
+  Card *play();
 
-        while (!pHand.empty()) {
-            Card *currentCard = pHand.front();
-            pHand.pop();
-            if (currentIndex == pos) {
-                targetCard = currentCard;
-            } else {
-                temp.push(currentCard);
-            }
-            currentIndex++;
-        }
+  /**
+   * @brief Returns but does not remove the top card from the player's hand.
+   * @return Pointer to the top Card.
+   */
+  Card *top();
 
-        pHand = temp;
-        return targetCard;
-    }
+  /**
+   * @brief Returns the Card at a given index without removing it.
+   * @param pos The position of the Card in the hand.
+   * @return Pointer to the Card at the specified position.
+   *
+   * Throws an exception if the position is invalid.
+   */
+  Card *getCard(int pos);
 
-    /**
-     * @brief Returns and removes the top card from the hand
-     *
-     * @return Card*
-     */
-    Card *play();
+  /**
+   * @brief Returns and removes the Card at a given index.
+   * @param pos The position of the Card to remove.
+   * @return Pointer to the removed Card.
+   *
+   * Throws an exception if the position is invalid.
+   */
+  Card *operator[](int pos);
 
-    /**
-     * @brief Returns the top card from the hand without removing it
-     *
-     * @return Card*
-     */
-    Card *top();
+  /**
+   * @brief Returns the number of cards in the player's hand.
+   * @return The number of cards.
+   */
+  int numCards();
 
-    /**
-     * @brief Returns the card at the specified index
-     *
-     * @param pos
-     * @return Card*
-     */
-    Card *getCard(int pos);
+  /**
+   * @brief Overloaded insertion operator to display the hand.
+   * @param output The output stream.
+   * @param hand The Hand object to print.
+   * @return Reference to the output stream.
+   */
+  friend std::ostream &operator<<(std::ostream &output, Hand &hand);
 
-    /**
-     * @brief Returns the number of cards in the hand
-     *
-     * @return int
-     */
-    int numCards() { return pHand.size(); }
+  /**
+   * @brief Saves the hand to a file.
+   * @param filename The output file stream to write to.
+   */
+  void saveHand(std::ofstream &filename);
 
-    /**
-     * @brief Get the list of cards in the hand
-     *
-     * @return std::queue<Card *, std::list<Card *>>*
-     */
-    std::queue<Card *, std::list<Card *>> *getListOfCards() { return &pHand; }
-
-    /**
-     * @brief Insertion operator to display the content of the Hand object
-     *
-     * @param output
-     * @param hand
-     * @return std::ostream&
-     */
-    friend std::ostream &operator<<(std::ostream &output, Hand &hand);
-
-    /**
-     * @brief Saves the cards in the hand to a file
-     *
-     * @param filename
-     */
-    void saveHand(std::ofstream &filename);
+  /**
+   * @brief Returns a pointer to the internal queue of cards.
+   * @return Pointer to the queue of Card pointers.
+   */
+  std::queue<Card *, std::list<Card *>> *getListOfCards();
 };
 
-#endif
+#endif // HAND_H

@@ -17,49 +17,46 @@ Card::~Card() {}
  * @brief Constructs a Blue bean card with an optional name.
  * @param name Name of the bean (default is "Blue").
  */
-Blue::Blue(std::string name)
-{
-    this->name = name;
-}
+Blue::Blue(std::string name) { this->name = name; }
 
 /**
- * @brief Gets the number of cards required for a certain number of coins for Blue beans.
+ * @brief Gets the number of cards required for a certain number of coins for
+ * Blue beans.
  * @param coins Number of coins.
  * @return Number of cards required, or -1 if invalid.
  */
 int Blue::getCardsPerCoin(int coins)
 {
-    int numCards = -1; // Default to -1 indicating invalid input
-    switch (coins)
-    {
-    case 1:
-        numCards = 4;
-        break;
-    case 2:
-        numCards = 6;
-        break;
-    case 3:
-        numCards = 8;
-        break;
-    case 4:
-        numCards = 10;
-        break;
-    default:
-        cout << "(Blue) - Invalid number of coins passed to getCardsPerCoin. Value received: " << coins << endl;
-        break;
-    }
+  int numCards = -1; // Default to -1 indicating invalid input
+  switch (coins)
+  {
+  case 1:
+    numCards = 4;
+    break;
+  case 2:
+    numCards = 6;
+    break;
+  case 3:
+    numCards = 8;
+    break;
+  case 4:
+    numCards = 10;
+    break;
+  default:
+    cout << "(Blue) - Invalid number of coins passed to getCardsPerCoin. Value "
+            "received: "
+         << coins << endl;
+    break;
+  }
 
-    return numCards;
+  return numCards;
 }
 
 /**
  * @brief Gets the name of the Blue bean.
  * @return Name of the bean.
  */
-string Blue::getName()
-{
-    return this->name;
-}
+string Blue::getName() { return this->name; }
 
 /**
  * @brief Prints the Blue card representation to an output stream.
@@ -68,7 +65,7 @@ string Blue::getName()
  */
 void Blue::print(std::ostream &out)
 {
-    out << 'B'; // Output uppercase 'B' for Blue
+  out << 'B'; // Output uppercase 'B' for Blue
 }
 
 // Chili
@@ -81,49 +78,46 @@ void Blue::print(std::ostream &out)
  * @brief Constructs a Chili bean card with an optional name.
  * @param name Name of the bean (default is "Chili").
  */
-Chili::Chili(std::string name)
-{
-    this->name = name;
-}
+Chili::Chili(std::string name) { this->name = name; }
 
 /**
- * @brief Gets the number of cards required for a certain number of coins for Chili beans.
+ * @brief Gets the number of cards required for a certain number of coins for
+ * Chili beans.
  * @param coins Number of coins.
  * @return Number of cards required, or -1 if invalid.
  */
 int Chili::getCardsPerCoin(int coins)
 {
-    int numCards = -1; // Default to -1 indicating invalid input
-    switch (coins)
-    {
-    case 1:
-        numCards = 3;
-        break;
-    case 2:
-        numCards = 6;
-        break;
-    case 3:
-        numCards = 8;
-        break;
-    case 4:
-        numCards = 9;
-        break;
-    default:
-        cout << "(Chili) - Invalid number of coins passed to getCardsPerCoin. Value received: " << coins << endl;
-        break;
-    }
+  int numCards = -1; // Default to -1 indicating invalid input
+  switch (coins)
+  {
+  case 1:
+    numCards = 3;
+    break;
+  case 2:
+    numCards = 6;
+    break;
+  case 3:
+    numCards = 8;
+    break;
+  case 4:
+    numCards = 9;
+    break;
+  default:
+    cout << "(Chili) - Invalid number of coins passed to getCardsPerCoin. "
+            "Value received: "
+         << coins << endl;
+    break;
+  }
 
-    return numCards;
+  return numCards;
 }
 
 /**
  * @brief Gets the name of the Chili bean.
  * @return Name of the bean.
  */
-string Chili::getName()
-{
-    return this->name;
-}
+string Chili::getName() { return this->name; }
 
 /**
  * @brief Prints the Chili card representation to an output stream.
@@ -132,7 +126,7 @@ string Chili::getName()
  */
 void Chili::print(std::ostream &out)
 {
-    out << 'C'; // Output 'C' for Chili
+  out << 'C'; // Output 'C' for Chili
 }
 
 // Stink
@@ -145,49 +139,46 @@ void Chili::print(std::ostream &out)
  * @brief Constructs a Stink bean card with an optional name.
  * @param name Name of the bean (default is "Stink").
  */
-Stink::Stink(std::string name)
-{
-    this->name = name;
-}
+Stink::Stink(std::string name) { this->name = name; }
 
 /**
- * @brief Gets the number of cards required for a certain number of coins for Stink beans.
+ * @brief Gets the number of cards required for a certain number of coins for
+ * Stink beans.
  * @param coins Number of coins.
  * @return Number of cards required, or -1 if invalid.
  */
 int Stink::getCardsPerCoin(int coins)
 {
-    int numCards = -1; // Default to -1 indicating invalid input
-    switch (coins)
-    {
-    case 1:
-        numCards = 3;
-        break;
-    case 2:
-        numCards = 5;
-        break;
-    case 3:
-        numCards = 7;
-        break;
-    case 4:
-        numCards = 8;
-        break;
-    default:
-        cout << "(Stink) - Invalid number of coins passed to getCardsPerCoin. Value received: " << coins << endl;
-        break;
-    }
+  int numCards = -1; // Default to -1 indicating invalid input
+  switch (coins)
+  {
+  case 1:
+    numCards = 3;
+    break;
+  case 2:
+    numCards = 5;
+    break;
+  case 3:
+    numCards = 7;
+    break;
+  case 4:
+    numCards = 8;
+    break;
+  default:
+    cout << "(Stink) - Invalid number of coins passed to getCardsPerCoin. "
+            "Value received: "
+         << coins << endl;
+    break;
+  }
 
-    return numCards;
+  return numCards;
 }
 
 /**
  * @brief Gets the name of the Stink bean.
  * @return Name of the bean.
  */
-string Stink::getName()
-{
-    return this->name;
-}
+string Stink::getName() { return this->name; }
 
 /**
  * @brief Prints the Stink card representation to an output stream.
@@ -196,7 +187,7 @@ string Stink::getName()
  */
 void Stink::print(std::ostream &out)
 {
-    out << 'S'; // Output uppercase 'S' for Stink
+  out << 'S'; // Output uppercase 'S' for Stink
 }
 
 // Green
@@ -209,49 +200,46 @@ void Stink::print(std::ostream &out)
  * @brief Constructs a Green bean card with an optional name.
  * @param name Name of the bean (default is "Green").
  */
-Green::Green(std::string name)
-{
-    this->name = name;
-}
+Green::Green(std::string name) { this->name = name; }
 
 /**
- * @brief Gets the number of cards required for a certain number of coins for Green beans.
+ * @brief Gets the number of cards required for a certain number of coins for
+ * Green beans.
  * @param coins Number of coins.
  * @return Number of cards required, or -1 if invalid.
  */
 int Green::getCardsPerCoin(int coins)
 {
-    int numCards = -1; // Default to -1 indicating invalid input
-    switch (coins)
-    {
-    case 1:
-        numCards = 3;
-        break;
-    case 2:
-        numCards = 5;
-        break;
-    case 3:
-        numCards = 6;
-        break;
-    case 4:
-        numCards = 7;
-        break;
-    default:
-        cout << "(Green) - Invalid number of coins passed to getCardsPerCoin. Value received: " << coins << endl;
-        break;
-    }
+  int numCards = -1; // Default to -1 indicating invalid input
+  switch (coins)
+  {
+  case 1:
+    numCards = 3;
+    break;
+  case 2:
+    numCards = 5;
+    break;
+  case 3:
+    numCards = 6;
+    break;
+  case 4:
+    numCards = 7;
+    break;
+  default:
+    cout << "(Green) - Invalid number of coins passed to getCardsPerCoin. "
+            "Value received: "
+         << coins << endl;
+    break;
+  }
 
-    return numCards;
+  return numCards;
 }
 
 /**
  * @brief Gets the name of the Green bean.
  * @return Name of the bean.
  */
-string Green::getName()
-{
-    return this->name;
-}
+string Green::getName() { return this->name; }
 
 /**
  * @brief Prints the Green card representation to an output stream.
@@ -260,7 +248,7 @@ string Green::getName()
  */
 void Green::print(std::ostream &out)
 {
-    out << 'G'; // Output uppercase 'G' for Green
+  out << 'G'; // Output uppercase 'G' for Green
 }
 
 // soy
@@ -273,49 +261,46 @@ void Green::print(std::ostream &out)
  * @brief Constructs a Soy bean card with an optional name.
  * @param name Name of the bean (default is "soy").
  */
-soy::soy(std::string name)
-{
-    this->name = name;
-}
+soy::soy(std::string name) { this->name = name; }
 
 /**
- * @brief Gets the number of cards required for a certain number of coins for Soy beans.
+ * @brief Gets the number of cards required for a certain number of coins for
+ * Soy beans.
  * @param coins Number of coins.
  * @return Number of cards required, or -1 if invalid.
  */
 int soy::getCardsPerCoin(int coins)
 {
-    int numCards = -1; // Default to -1 indicating invalid input
-    switch (coins)
-    {
-    case 1:
-        numCards = 2;
-        break;
-    case 2:
-        numCards = 4;
-        break;
-    case 3:
-        numCards = 6;
-        break;
-    case 4:
-        numCards = 7;
-        break;
-    default:
-        cout << "(soy) - Invalid number of coins passed to getCardsPerCoin. Value received: " << coins << endl;
-        break;
-    }
+  int numCards = -1; // Default to -1 indicating invalid input
+  switch (coins)
+  {
+  case 1:
+    numCards = 2;
+    break;
+  case 2:
+    numCards = 4;
+    break;
+  case 3:
+    numCards = 6;
+    break;
+  case 4:
+    numCards = 7;
+    break;
+  default:
+    cout << "(soy) - Invalid number of coins passed to getCardsPerCoin. Value "
+            "received: "
+         << coins << endl;
+    break;
+  }
 
-    return numCards;
+  return numCards;
 }
 
 /**
  * @brief Gets the name of the Soy bean.
  * @return Name of the bean.
  */
-string soy::getName()
-{
-    return this->name;
-}
+string soy::getName() { return this->name; }
 
 /**
  * @brief Prints the Soy card representation to an output stream.
@@ -324,7 +309,7 @@ string soy::getName()
  */
 void soy::print(std::ostream &out)
 {
-    out << 's'; // Output lowercase 's' for soy
+  out << 's'; // Output lowercase 's' for soy
 }
 
 // black
@@ -337,49 +322,46 @@ void soy::print(std::ostream &out)
  * @brief Constructs a Black bean card with an optional name.
  * @param name Name of the bean (default is "black").
  */
-black::black(std::string name)
-{
-    this->name = name;
-}
+black::black(std::string name) { this->name = name; }
 
 /**
- * @brief Gets the number of cards required for a certain number of coins for Black beans.
+ * @brief Gets the number of cards required for a certain number of coins for
+ * Black beans.
  * @param coins Number of coins.
  * @return Number of cards required, or -1 if invalid.
  */
 int black::getCardsPerCoin(int coins)
 {
-    int numCards = -1; // Default to -1 indicating invalid input
-    switch (coins)
-    {
-    case 1:
-        numCards = 2;
-        break;
-    case 2:
-        numCards = 4;
-        break;
-    case 3:
-        numCards = 5;
-        break;
-    case 4:
-        numCards = 6;
-        break;
-    default:
-        cout << "(black) - Invalid number of coins passed to getCardsPerCoin. Value received: " << coins << endl;
-        break;
-    }
+  int numCards = -1; // Default to -1 indicating invalid input
+  switch (coins)
+  {
+  case 1:
+    numCards = 2;
+    break;
+  case 2:
+    numCards = 4;
+    break;
+  case 3:
+    numCards = 5;
+    break;
+  case 4:
+    numCards = 6;
+    break;
+  default:
+    cout << "(black) - Invalid number of coins passed to getCardsPerCoin. "
+            "Value received: "
+         << coins << endl;
+    break;
+  }
 
-    return numCards;
+  return numCards;
 }
 
 /**
  * @brief Gets the name of the Black bean.
  * @return Name of the bean.
  */
-string black::getName()
-{
-    return this->name;
-}
+string black::getName() { return this->name; }
 
 /**
  * @brief Prints the Black card representation to an output stream.
@@ -388,7 +370,7 @@ string black::getName()
  */
 void black::print(std::ostream &out)
 {
-    out << 'b'; // Output lowercase 'b' for black
+  out << 'b'; // Output lowercase 'b' for black
 }
 
 // Red
@@ -401,49 +383,46 @@ void black::print(std::ostream &out)
  * @brief Constructs a Red bean card with an optional name.
  * @param name Name of the bean (default is "Red").
  */
-Red::Red(std::string name)
-{
-    this->name = name;
-}
+Red::Red(std::string name) { this->name = name; }
 
 /**
- * @brief Gets the number of cards required for a certain number of coins for Red beans.
+ * @brief Gets the number of cards required for a certain number of coins for
+ * Red beans.
  * @param coins Number of coins.
  * @return Number of cards required, or -1 if invalid.
  */
 int Red::getCardsPerCoin(int coins)
 {
-    int numCards = -1; // Default to -1 indicating invalid input
-    switch (coins)
-    {
-    case 1:
-        numCards = 2;
-        break;
-    case 2:
-        numCards = 3;
-        break;
-    case 3:
-        numCards = 4;
-        break;
-    case 4:
-        numCards = 5;
-        break;
-    default:
-        cout << "(Red) - Invalid number of coins passed to getCardsPerCoin. Value received: " << coins << endl;
-        break;
-    }
+  int numCards = -1; // Default to -1 indicating invalid input
+  switch (coins)
+  {
+  case 1:
+    numCards = 2;
+    break;
+  case 2:
+    numCards = 3;
+    break;
+  case 3:
+    numCards = 4;
+    break;
+  case 4:
+    numCards = 5;
+    break;
+  default:
+    cout << "(Red) - Invalid number of coins passed to getCardsPerCoin. Value "
+            "received: "
+         << coins << endl;
+    break;
+  }
 
-    return numCards;
+  return numCards;
 }
 
 /**
  * @brief Gets the name of the Red bean.
  * @return Name of the bean.
  */
-string Red::getName()
-{
-    return this->name;
-}
+string Red::getName() { return this->name; }
 
 /**
  * @brief Prints the Red card representation to an output stream.
@@ -452,7 +431,7 @@ string Red::getName()
  */
 void Red::print(std::ostream &out)
 {
-    out << 'R'; // Output 'R' for Red
+  out << 'R'; // Output 'R' for Red
 }
 
 // garden
@@ -465,49 +444,46 @@ void Red::print(std::ostream &out)
  * @brief Constructs a Garden bean card with an optional name.
  * @param name Name of the bean (default is "garden").
  */
-garden::garden(std::string name)
-{
-    this->name = name;
-}
+garden::garden(std::string name) { this->name = name; }
 
 /**
- * @brief Gets the number of cards required for a certain number of coins for Garden beans.
+ * @brief Gets the number of cards required for a certain number of coins for
+ * Garden beans.
  * @param coins Number of coins.
  * @return Number of cards required, or -1 if invalid.
  */
 int garden::getCardsPerCoin(int coins)
 {
-    int numCards = -1; // Default to -1 indicating invalid input
-    switch (coins)
-    {
-    case 1:
-        numCards = 0;
-        break;
-    case 2:
-        numCards = 2;
-        break;
-    case 3:
-        numCards = 3;
-        break;
-    case 4:
-        numCards = 0;
-        break;
-    default:
-        cout << "(garden) - Invalid number of coins passed to getCardsPerCoin. Value received: " << coins << endl;
-        break;
-    }
+  int numCards = -1; // Default to -1 indicating invalid input
+  switch (coins)
+  {
+  case 1:
+    numCards = 0;
+    break;
+  case 2:
+    numCards = 2;
+    break;
+  case 3:
+    numCards = 3;
+    break;
+  case 4:
+    numCards = 0;
+    break;
+  default:
+    cout << "(garden) - Invalid number of coins passed to getCardsPerCoin. "
+            "Value received: "
+         << coins << endl;
+    break;
+  }
 
-    return numCards;
+  return numCards;
 }
 
 /**
  * @brief Gets the name of the Garden bean.
  * @return Name of the bean.
  */
-string garden::getName()
-{
-    return this->name;
-}
+string garden::getName() { return this->name; }
 
 /**
  * @brief Prints the Garden card representation to an output stream.
@@ -516,7 +492,7 @@ string garden::getName()
  */
 void garden::print(std::ostream &out)
 {
-    out << 'g'; // Output lowercase 'g' for garden
+  out << 'g'; // Output lowercase 'g' for garden
 }
 
 /**
@@ -528,8 +504,8 @@ void garden::print(std::ostream &out)
  */
 std::ostream &operator<<(std::ostream &out, Card &card)
 {
-    card.print(out);
-    return out;
+  card.print(out);
+  return out;
 }
 
 /**
@@ -538,5 +514,5 @@ std::ostream &operator<<(std::ostream &out, Card &card)
  */
 void Card::saveCard(std::ofstream &filename)
 {
-    filename << *this; // Use the overloaded operator<<
+  filename << *this; // Use the overloaded operator<<
 }
